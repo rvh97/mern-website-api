@@ -29,12 +29,32 @@ router.delete('/:id', (request, response) => {
             } else {
                 response
                     .status(STATUS_NOT_FOUND)
-                    .json({ msg: `Object with id ${request.params.id} not found` })
+                    .json({ msg: `Object with id ${request.params.id} not found` });
             }
         })
-        .catch(() => response
-            .status(STATUS_UNPROCESSABLE_DATA)
-            .json({ error: `Incorrectly formatted id or invalid length of id`})
+        .catch(() => 
+            response
+                .status(STATUS_UNPROCESSABLE_DATA)
+                .json({ error: `Incorrectly formatted id or invalid length of id`})
+        );
+});
+
+// Update an item
+router.put('/:id', (request, response) => {
+    Item.findByIdAndUpdate(request.params.id, request.body, { new: true })
+        .then(result => {
+            if(result) {
+                response.json(result);
+            } else {
+                response
+                    .status(STATUS_NOT_FOUND)
+                    .json({ msg: `Object with id ${request.params.id} not found` });
+            }
+        })
+        .catch(() =>
+            response
+                .status(STATUS_UNPROCESSABLE_DATA)
+                .json({ error: `Incorrectly formatted id or invalid length of id`})
         );
 });
 
