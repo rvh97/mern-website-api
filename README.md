@@ -5,3 +5,10 @@
 * Express
 * React
 * Node.js
+
+## Running the server
+Make sure MongoDB is running. Then start the server using:
+
+```
+yarn run dev
+```
