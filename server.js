@@ -3,8 +3,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
 
-const { SERVER_PORT, MONGO_URI } = require('./config');
+dotenv.config();
+const { PORT, MONGO_URI } = process.env;
 
 const itemRoutes = require('./models/item/itemRoutes');
 
@@ -27,6 +29,6 @@ mongoose
   .then(() => console.log('Connected to database'))
   .catch(err => console.log(err));
 
-app.listen(SERVER_PORT, () => {
-  console.log(`Server started on port ${SERVER_PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`);
 })
