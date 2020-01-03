@@ -2,7 +2,6 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -13,7 +12,7 @@ const itemRoutes = require('./models/item/itemRoutes');
 const app = express();
 
 // Bodyparser middleware
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Middleware logging every request
 app.use((req, res, next) => {
