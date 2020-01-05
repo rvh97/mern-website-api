@@ -1,58 +1,57 @@
 'use strict';
 
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 const Item = require('./itemEntity');
 
 const STATUS_NOT_FOUND = 404;
 const STATUS_UNPROCESSABLE_DATA = 422;
 
 // Get all items
-router.get('/', (request, response) => {
+router.get('/', (req, res) => {
   Item.find().lean().exec()
-    .then(items => response.json(items))
+    .then(items => res.json(items))
 });
 
 // Create an item
-router.post('/', (request, response) => {
-  new Item(request.body).save()
-    .then(item => response.json(item))
-    .catch(() => response.status(STATUS_UNPROCESSABLE_DATA).send());
+router.post('/', (req, res) => {
+  new Item(req.body).save()
+    .then(item => res.json(item))
+    .catch(() => res.status(STATUS_UNPROCESSABLE_DATA).send());
 });
 
 // Delete an item
-router.delete('/:id', (request, response) => {
-  Item.findByIdAndDelete(request.params.id)
+router.delete('/:id', (req, res) => {
+  Item.findByIdAndDelete(req.params.id)
     .then(result => {
       if (result) {
-        response.json({ msg: 'Successfully deleted' });
+        res.json({ msg: 'Successfully deleted' });
       } else {
-        response
+        res
           .status(STATUS_NOT_FOUND)
-          .json({ msg: `Object with id ${request.params.id} not found` });
+          .json({ msg: `Object with id ${req.params.id} not found` });
       }
     })
     .catch(() =>
-      response
+      res
         .status(STATUS_UNPROCESSABLE_DATA)
         .json({ error: `Incorrectly formatted id or invalid length of id` })
     );
 });
 
 // Update an item
-router.put('/:id', (request, response) => {
-  Item.findByIdAndUpdate(request.params.id, request.body, { new: true })
+router.put('/:id', (req, res) => {
+  Item.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then(result => {
       if (result) {
-        response.json(result);
+        res.json(result);
       } else {
-        response
+        res
           .status(STATUS_NOT_FOUND)
-          .json({ msg: `Object with id ${request.params.id} not found` });
+          .json({ msg: `Object with id ${req.params.id} not found` });
       }
     })
     .catch(() =>
-      response
+      res
         .status(STATUS_UNPROCESSABLE_DATA)
         .json({ error: `Incorrectly formatted id or invalid length of id` })
     );
