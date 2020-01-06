@@ -2,7 +2,7 @@
 
 const router = require('express').Router();
 const passport = require('passport');
-const { ensureAuthenticated } = require('./authHandler');
+const { ensureAuthenticated } = require('./authMiddleware');
 
 // Login using Google
 router.get('/google',

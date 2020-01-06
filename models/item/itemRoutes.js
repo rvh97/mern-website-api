@@ -2,6 +2,7 @@
 
 const router = require('express').Router();
 const Item = require('./itemEntity');
+const { ensureAuthenticated } = require('../auth/authMiddleware');
 
 const STATUS_NOT_FOUND = 404;
 const STATUS_UNPROCESSABLE_DATA = 422;
@@ -13,14 +14,14 @@ router.get('/', (req, res) => {
 });
 
 // Create an item
-router.post('/', (req, res) => {
+router.post('/', ensureAuthenticated, (req, res) => {
   new Item(req.body).save()
     .then(item => res.json(item))
     .catch(() => res.status(STATUS_UNPROCESSABLE_DATA).send());
 });
 
 // Delete an item
-router.delete('/:id', (req, res) => {
+router.delete('/:id', ensureAuthenticated, (req, res) => {
   Item.findByIdAndDelete(req.params.id)
     .then(result => {
       if (result) {
@@ -39,7 +40,7 @@ router.delete('/:id', (req, res) => {
 });
 
 // Update an item
-router.put('/:id', (req, res) => {
+router.put('/:id', ensureAuthenticated, (req, res) => {
   Item.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then(result => {
       if (result) {
