@@ -1,13 +1,11 @@
-'use strict';
+"use strict";
 
 module.exports = {
   ensureAuthenticated: function(req, res, next) {
-    if(req.isAuthenticated()) {
+    if (req.isAuthenticated()) {
       next();
     } else {
-      res
-        .status(403)
-        .send('Not authorized');
-    }  
+      res.status(403).send({ error: "Not authorized. Please login" });
+    }
   }
-}
+};
