@@ -31,7 +31,7 @@ app.use(
     saveUninitialized: false,
     rolling: true,
     cookie: {
-      maxAge: process.env.COOKIE_MAX_AGE_MS
+      maxAge: +process.env.COOKIE_MAX_AGE_MS
     }
   })
 );
@@ -63,6 +63,6 @@ mongoose
   .then(() => console.log("Connected to database"))
   .catch(err => console.log(err));
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server started on port ${process.env.PORT}`);
+app.listen(+process.env.PORT, () => {
+  console.log(`Server started on port ${+process.env.PORT}`);
 });
