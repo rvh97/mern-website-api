@@ -1,13 +1,16 @@
-'use strict';
+"use strict";
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const schema = new mongoose.Schema({
-  googleId: {
-    type: String,
-    required: true,
-    unique: true
+const schema = new mongoose.Schema(
+  {
+    googleId: {
+      type: String,
+      required: true,
+      unique: true
+    }
   },
-}, { timestamps: true });
+  { timestamps: true }
+);
 
-module.exports = mongoose.model('user', schema);
+module.exports = mongoose.model("user", schema);
