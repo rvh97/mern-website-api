@@ -10,21 +10,17 @@ passport.use(
       callbackURL: "/auth/google/redirect"
     },
     (accessToken, refreshToken, profile, done) => {
-      console.log("GoogleId:", profile.id);
-      user = {
-        googleId: profile.id
-      };
-
       User.findOne({ googleId: profile.id })
         .lean()
         .exec()
         .then(user => {
           if (user) {
-            console.log("user", user);
             done(null, user);
           } else {
+            const newUser = {
+              googleId: profile.id
+            };
             new User(newUser).save().then(user => {
-              console.log("user", user);
               done(null, user);
             });
           }
