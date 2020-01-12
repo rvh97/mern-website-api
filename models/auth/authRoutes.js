@@ -5,7 +5,7 @@ const passport = require("passport");
 const { ensureAuthenticated } = require("./authMiddleware");
 
 // Login using Google
-router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
+router.get("/google", passport.authenticate("google", { scope: ["email"] }));
 
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
   res.send("<script>window.close()</script>");

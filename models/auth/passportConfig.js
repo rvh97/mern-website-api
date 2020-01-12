@@ -17,8 +17,10 @@ passport.use(
           if (user) {
             done(null, user);
           } else {
+            const [emailInfo] = profile.emails;
             const newUser = {
-              googleId: profile.id
+              googleId: profile.id,
+              email: emailInfo.value
             };
             new User(newUser).save().then(user => {
               done(null, user);
