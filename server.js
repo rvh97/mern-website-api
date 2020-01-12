@@ -51,6 +51,7 @@ app.use((req, res, next) => {
 // Routes
 app.use("/item", require("./models/item/itemRoutes"));
 app.use("/auth", require("./models/auth/authRoutes"));
+app.use("/user", require("./models/user/userRoutes"));
 
 // Connect to db
 mongoose
