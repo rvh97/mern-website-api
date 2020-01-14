@@ -8,7 +8,7 @@ const { ensureAuthenticated } = require("./authMiddleware");
 router.get("/google", passport.authenticate("google", { scope: ["email"] }));
 
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
-  res.send("<script>window.close()</script>");
+  res.redirect(process.env.CLIENT_SOCKET);
 });
 
 // Logout
