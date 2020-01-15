@@ -13,7 +13,19 @@ Additional dependencies
 
 - Passport - for authentication
 
-# Running the server
+# Setup
+
+## GCP (Google Cloud Platform)
+
+Info: Used to be able to login using Google.
+
+In APIs & Services:
+
+- Enable the People API
+- Create credentials (OAuth client ID) for an 'Web application' with redirect URI pointing to `/auth/google/redirect` route of server domain.
+  - Development: the redirect URI should be set to
+    `http://localhost:<PORT>/auth/google/redirect`
+  - Production: To be written
 
 ## Environment variables setup
 
@@ -39,9 +51,9 @@ There are environment variables that must be set.
 
 * **PASSPORT_GOOGLE_OAUTH20_CLIENT_SECRET** - OAuth 2.0 client secret of your GCP project
 
-* **PORT** - the port the server should listen to, e.g. 5000
+* **PORT** - the port the server should listen to, e.g. 5000. Make sure this is the same port as the GCP project redirect route setup before
 
-## Run server
+# Running the server
 
 - In development: `yarn run dev`
 - In production: To be written
