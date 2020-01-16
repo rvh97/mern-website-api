@@ -19,7 +19,7 @@ Additional dependencies
 
 Info: Used to be able to login using Google.
 
-In APIs & Services:
+### In APIs & Services:
 
 - Enable the People API
 - Create credentials (OAuth client ID) for an 'Web application' with redirect URI pointing to `/auth/google/redirect` route of server domain.
@@ -27,13 +27,20 @@ In APIs & Services:
     `http://localhost:<PORT>/auth/google/redirect`
   - Production: To be written
 
+### In App Engine:
+
+Clone this repository to the cloud shell:
+
+    git clone <repository>
+
 ## Environment variables setup
 
-There are environment variables that must be set.
+There are environment variables that must be set. They can be put in a file called `env_variables.yaml` (in root directory) in the format:
 
-**Development**: dotenv dev-dependency is used. Create a file called '.env' in server root directory. Each line of the file should be formatted like `KEY=VALUE` for each environment variable to be set
-
-**Production**: To be written
+    env_variables:
+      ENVIRONMENT_VARIABLE1: VALUE1
+      ENVIRONMENT_VARIABLE2: VALUE2
+      ...
 
 ### Environment variables:
 
@@ -51,9 +58,16 @@ There are environment variables that must be set.
 
 * **PASSPORT_GOOGLE_OAUTH20_CLIENT_SECRET** - OAuth 2.0 client secret of your GCP project
 
-* **PORT** - the port the server should listen to, e.g. 5000. Make sure this is the same port as the GCP project redirect route setup before
+* **PORT** - the port the server should listen to, e.g. 5000. In App Engine it is automatically set.
 
 # Running the server
 
-- In development: `yarn run dev`
-- In production: To be written
+- In development:
+
+      yarn run dev
+
+- In production App Engine cloud shell:
+
+      cd <repository>
+      gcloud app create
+      gcloud app deploy
