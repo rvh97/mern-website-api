@@ -5,7 +5,8 @@
   "author": "Roland Veiderma Holmberg",
   "license": " GPL-3.0-only",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "dependencies": {
     "dotenv": "^8.2.0",

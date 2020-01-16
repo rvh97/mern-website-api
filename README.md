@@ -45,7 +45,7 @@ There are environment variables that must be set.
 
 - **MONGO_URI** - MongoDB connection URI.
 
-- **NODE_ENV** - If server is running in an 'development' or 'production' environment
+- **NODE_ENV** - If server is running in an `development` or `production` environment. In App Engine it is automatically set to `production`.
 
 - **PASSPORT_GOOGLE_OAUTH20_CLIENT_ID** - OAuth 2.0 client ID of your GCP (Google Cloud Platform) project with People API enabled. (In GCP -> Your project -> APIs & Services -> Credentials)
 
