@@ -53,17 +53,25 @@ app.use("/item", require("./models/item/itemRoutes"));
 app.use("/auth", require("./models/auth/authRoutes"));
 app.use("/user", require("./models/user/userRoutes"));
 
-// Connect to db
-mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true
-  })
-  .then(() => console.log("Connected to database"))
-  .catch(err => console.log(err));
+(async () => {
+  try {
+    console.log("Connecting to database...");
+    await mongoose.connect(process.env.MONGO_URI, {
+      serverSelectionTimeoutMS: 5000,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+      useCreateIndex: true
+    });
+    console.log("Connected to database");
+  } catch (err) {
+    console.log("Could not connect to database");
+    console.log(err);
+    process.exit(1);
+  }
 
-app.listen(+process.env.PORT, () => {
-  console.log(`Server started on port ${+process.env.PORT}`);
-});
+  console.log("Starting server...");
+  app.listen(+process.env.PORT, () => {
+    console.log(`Server started on port ${+process.env.PORT}`);
+  });
+})();
