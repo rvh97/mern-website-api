@@ -1,7 +1,9 @@
 "use strict";
 
-const dotenv = require("dotenv");
-dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+  require("env-app-yaml").config({ path: "env_variables.yaml" });
+}
+
 [
   "CLIENT_SOCKET",
   "COOKIE_MAX_AGE_MS",
