@@ -46,7 +46,7 @@ There are environment variables that must be set. They can be put in a file call
 
 - **CLIENT_SOCKET** - the address and port to UI, in development e.g. http://localhost:3000
 
-- **EXPRESS_SESSION_SECRET** - a randomized string used in hashing the session for security. Should just not be any easily guessable default string
+- **SESSION_SECRET** - a randomized string used in hashing the server user sessions for security. Should just not be any easily guessable default string
 
 - **COOKIE_MAX_AGE_MS** - After this time of user inactivity (in milliseconds), the user is logged out (session expired)
 

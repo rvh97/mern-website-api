@@ -7,7 +7,7 @@ if (process.env.NODE_ENV !== "production") {
 [
   "CLIENT_SOCKET",
   "COOKIE_MAX_AGE_MS",
-  "EXPRESS_SESSION_SECRET",
+  "SESSION_SECRET",
   "MONGO_URI",
   "NODE_ENV",
   "PASSPORT_GOOGLE_OAUTH20_CLIENT_ID",
@@ -20,23 +20,27 @@ if (process.env.NODE_ENV !== "production") {
 
 const express = require("express");
 const mongoose = require("mongoose");
-const expressSession = require("express-session");
+const cookieSession = require("cookie-session");
 const passport = require("passport");
 require("./models/auth/passportConfig");
 
 const app = express();
 
 app.use(
-  expressSession({
-    secret: process.env.EXPRESS_SESSION_SECRET,
-    resave: true,
-    saveUninitialized: false,
-    rolling: true,
-    cookie: {
-      maxAge: +process.env.COOKIE_MAX_AGE_MS
-    }
+  cookieSession({
+    name: "session",
+    secret: process.env.SESSION_SECRET,
+    maxAge: +process.env.COOKIE_MAX_AGE_MS
   })
 );
+
+// Rolling session option not supported.
+// Updates a value in cookie so that the set-cookie will be sent along with updated maxAge i.e. simulate rolling session
+// For performance purpose not changed with every request, only each minute
+app.use((req, res, next) => {
+  req.session.changedMaxOncePerMinute = Math.floor(Date.now() / 60e3); // Rolling session,
+  next();
+});
 
 app.use(passport.initialize());
 app.use(passport.session());
