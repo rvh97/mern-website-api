@@ -54,9 +54,9 @@ There are environment variables that must be set. They can be put in a file call
 
 - **NODE_ENV** - If server is running in an `development` or `production` environment. In App Engine it is automatically set to `production`.
 
-- **PASSPORT_GOOGLE_OAUTH20_CLIENT_ID** - OAuth 2.0 client ID of your GCP (Google Cloud Platform) project with People API enabled. (In GCP -> Your project -> APIs & Services -> Credentials)
+- **GOOGLE_OAUTH20_CLIENT_ID** - OAuth 2.0 client ID of your GCP (Google Cloud Platform) project with People API enabled. (In GCP -> Your project -> APIs & Services -> Credentials)
 
-* **PASSPORT_GOOGLE_OAUTH20_CLIENT_SECRET** - OAuth 2.0 client secret of your GCP project
+* **GOOGLE_OAUTH20_CLIENT_SECRET** - OAuth 2.0 client secret of your GCP project
 
 * **PORT** - the port the server should listen to, e.g. 5000. In App Engine it is automatically set.
 

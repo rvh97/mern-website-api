@@ -5,8 +5,8 @@ const User = require("../user/userEntity");
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.PASSPORT_GOOGLE_OAUTH20_CLIENT_ID,
-      clientSecret: process.env.PASSPORT_GOOGLE_OAUTH20_CLIENT_SECRET,
+      clientID: process.env.GOOGLE_OAUTH20_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_OAUTH20_CLIENT_SECRET,
       callbackURL: "/auth/google/redirect"
     },
     (accessToken, refreshToken, profile, done) => {

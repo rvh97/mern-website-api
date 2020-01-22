@@ -10,8 +10,8 @@ if (process.env.NODE_ENV !== "production") {
   "SESSION_SECRET",
   "MONGO_URI",
   "NODE_ENV",
-  "PASSPORT_GOOGLE_OAUTH20_CLIENT_ID",
-  "PASSPORT_GOOGLE_OAUTH20_CLIENT_SECRET",
+  "GOOGLE_OAUTH20_CLIENT_ID",
+  "GOOGLE_OAUTH20_CLIENT_SECRET",
   "PORT"
 ].forEach(environmentVariable => {
   if (!process.env[environmentVariable])
