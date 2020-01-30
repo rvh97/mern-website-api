@@ -7,12 +7,13 @@ if (process.env.NODE_ENV !== "production") {
 [
   "CLIENT_SOCKET",
   "COOKIE_MAX_AGE_MS",
-  "SESSION_SECRET",
   "MONGO_URI",
   "NODE_ENV",
   "GOOGLE_OAUTH20_CLIENT_ID",
   "GOOGLE_OAUTH20_CLIENT_SECRET",
-  "PORT"
+  "PORT",
+  "SERVER_SOCKET",
+  "SESSION_SECRET"
 ].forEach(environmentVariable => {
   if (!process.env[environmentVariable])
     throw new Error(`Environment variable ${environmentVariable} not set`);

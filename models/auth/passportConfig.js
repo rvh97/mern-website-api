@@ -7,7 +7,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_OAUTH20_CLIENT_ID,
       clientSecret: process.env.GOOGLE_OAUTH20_CLIENT_SECRET,
-      callbackURL: "/auth/google/redirect"
+      callbackURL: `${process.env.SERVER_SOCKET}/auth/google/redirect`
     },
     (accessToken, refreshToken, profile, done) => {
       User.findOne({ googleId: profile.id })

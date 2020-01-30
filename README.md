@@ -46,8 +46,6 @@ There are environment variables that must be set. They can be put in a file call
 
 - **CLIENT_SOCKET** - the address and port to UI, in development e.g. http://localhost:3000
 
-- **SESSION_SECRET** - a randomized string used in hashing the server user sessions for security. Should just not be any easily guessable default string
-
 - **COOKIE_MAX_AGE_MS** - After this time of user inactivity (in milliseconds), the user is logged out (session expired)
 
 - **MONGO_URI** - MongoDB connection URI.
@@ -56,9 +54,13 @@ There are environment variables that must be set. They can be put in a file call
 
 - **GOOGLE_OAUTH20_CLIENT_ID** - OAuth 2.0 client ID of your GCP (Google Cloud Platform) project with People API enabled. (In GCP -> Your project -> APIs & Services -> Credentials)
 
-* **GOOGLE_OAUTH20_CLIENT_SECRET** - OAuth 2.0 client secret of your GCP project
+- **GOOGLE_OAUTH20_CLIENT_SECRET** - OAuth 2.0 client secret of your GCP project
 
-* **PORT** - the port the server should listen to, e.g. 5000. In App Engine it is automatically set.
+- **PORT** - the port the server should listen to, e.g. 5000. In App Engine it is automatically set.
+
+- **SERVER_SOCKET** - The server socket i.e. in development `https://localhost:5001` or `http://localhost:5000`
+
+- **SESSION_SECRET** - a randomized string used in hashing the server user sessions for security. Should just not be any easily guessable default string
 
 # Setup (development)
 
@@ -121,6 +123,18 @@ Reload Nginx with the new configuration by using:
     sudo nginx -s reload
 
 The server can now locally be reached using HTTPS on port 5001, where as HTTP can be reached on port 5000.
+
+### Google Cloud configuration
+
+In GCP, go to `APIs & Services` and add a HTTPS redirect URI:
+
+        https://localhost:5001/auth/google/redirect
+
+### Environment variables
+
+For the duration of using TLS, the environment variable SERVER_SOCKET should be set to
+
+        https://localhost:5001
 
 # Running the server
 
